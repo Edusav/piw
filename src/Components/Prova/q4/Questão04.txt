@@ -1,0 +1,42 @@
+
+O PROPS DRILLING ocorre quando voce necessia passar os dados atraves de inumeros componentes mesmo que 
+os componentes intermediarios não precisem desses dados em si.Deixando o codigo muito confuso e pouco escalavel
+
+Resolver esse porblema atraves de contexto consiste em que os contexto permite compartilhar dados entre componentes 
+sem a necessidade de passa-los por meio de props, ele cria 
+um escopo de dados compartilhado que pode ser acessado por qualquer componente em uma árvore de componentes, 
+independentemente da profundidade
+
+
+
+import React, { createContext, useContext } from 'react';
+
+//Criação do contexto
+
+const MeuContexto = createContext();
+
+// Componente com dados
+
+function Componente() {
+  const dados = 'Coisas';
+
+  return (
+    <MeuContexto.Provider value={dados}>
+      <Componente2 />
+    </MeuContexto.Provider>
+  );
+}
+
+// Componente2 que pega o contexto
+function Componente2() {
+  const outrosdados = useContext(MeuContexto);
+
+  return <p>Dados do contexto: {outrosdados}</p>;
+}
+
+// Componente principal
+function App() {
+  return <Componente />;
+}
+
+export default App;

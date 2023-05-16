@@ -1,0 +1,4 @@
+Questão01: 0,0
+Questão02: 2,5
+Questão03: 2,5
+Questão04: 2,5
